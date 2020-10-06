@@ -1,0 +1,92 @@
+axpmultAddVSAxpyTiming:
+	gcc -o bin/multAddVsAxpyTiming multAddVsAxpy.c VectorND.c
+
+runMultAddVSAxpyTiming:
+	./bin/multAddVsAxpyTiming 100
+	./bin/multAddVsAxpyTiming 400
+	./bin/multAddVsAxpyTiming 1600
+	./bin/multAddVsAxpyTiming 3200
+	./bin/multAddVsAxpyTiming 12800
+	./bin/multAddVsAxpyTiming 51200
+	./bin/multAddVsAxpyTiming 204800
+	./bin/multAddVsAxpyTiming 819200
+	./bin/multAddVsAxpyTiming 3276800
+	./bin/multAddVsAxpyTiming 13107200
+	./bin/multAddVsAxpyTiming 52428800
+
+axpyTiming:
+	gcc -o bin/axpyTiming axpyTiming.c VectorND.c
+
+runAxpyTiming100:
+	./bin/axpyTiming 100
+
+runAxpyTimingLoop:
+	./bin/axpyTiming 100 
+	./bin/axpyTiming 200
+	./bin/axpyTiming 400 
+	./bin/axpyTiming 800 
+	./bin/axpyTiming 1600 
+	./bin/axpyTiming 3200
+	./bin/axpyTiming 6400
+	./bin/axpyTiming 12800
+	./bin/axpyTiming 25600 
+	./bin/axpyTiming 51200
+	./bin/axpyTiming 102400 
+	./bin/axpyTiming 204800
+	./bin/axpyTiming 409600 
+	./bin/axpyTiming 819200
+	./bin/axpyTiming 1638400 
+	./bin/axpyTiming 3276800
+	./bin/axpyTiming 6553600
+	./bin/axpyTiming 13107200
+	./bin/axpyTiming 26214400
+	./bin/axpyTiming 52428800
+
+
+axpyReg:
+	gcc -o bin/axpyReg axpyRegStudy.c VectorND.c
+
+runAxpyRegularCachegrind:
+	valgrind --tool=cachegrind bin/axpyReg 100
+	valgrind --tool=cachegrind bin/axpyReg 200
+	valgrind --tool=cachegrind bin/axpyReg 400
+	valgrind --tool=cachegrind bin/axpyReg 800
+	valgrind --tool=cachegrind bin/axpyReg 1600
+	valgrind --tool=cachegrind bin/axpyReg 3200
+	valgrind --tool=cachegrind bin/axpyReg 6400
+	valgrind --tool=cachegrind bin/axpyReg 12800
+	valgrind --tool=cachegrind bin/axpyReg 25600
+	valgrind --tool=cachegrind bin/axpyReg 51200
+	valgrind --tool=cachegrind bin/axpyReg 102400
+	valgrind --tool=cachegrind bin/axpyReg 204800
+	valgrind --tool=cachegrind bin/axpyReg 409600
+	valgrind --tool=cachegrind bin/axpyReg 819200
+	valgrind --tool=cachegrind bin/axpyReg 1638400
+	valgrind --tool=cachegrind bin/axpyReg 3276800
+	valgrind --tool=cachegrind bin/axpyReg 6553600
+
+
+axpyRand:
+	gcc -o bin/axpyRand axpyRandStudy.c VectorND.c
+
+runAxpyRandomCachegrind:
+	valgrind --tool=cachegrind bin/axpyRand 100
+	valgrind --tool=cachegrind bin/axpyRand 200
+	valgrind --tool=cachegrind bin/axpyRand 400
+	valgrind --tool=cachegrind bin/axpyRand 800
+	valgrind --tool=cachegrind bin/axpyRand 1600
+	valgrind --tool=cachegrind bin/axpyRand 3200
+	valgrind --tool=cachegrind bin/axpyRand 6400
+	valgrind --tool=cachegrind bin/axpyRand 12800
+	valgrind --tool=cachegrind bin/axpyRand 25600
+	valgrind --tool=cachegrind bin/axpyRand 51200
+	valgrind --tool=cachegrind bin/axpyRand 102400
+	valgrind --tool=cachegrind bin/axpyRand 204800
+	valgrind --tool=cachegrind bin/axpyRand 409600
+	valgrind --tool=cachegrind bin/axpyRand 819200
+	valgrind --tool=cachegrind bin/axpyRand 1638400
+	valgrind --tool=cachegrind bin/axpyRand 3276800
+	valgrind --tool=cachegrind bin/axpyRand 6553600
+
+clean:
+	rm -f bin/axpyTiming
