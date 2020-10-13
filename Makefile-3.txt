@@ -1,0 +1,5 @@
+buildSum:
+	gcc -o sum -fopenmp sum.c
+
+runSum:
+	./sum
