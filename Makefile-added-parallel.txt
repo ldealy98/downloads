@@ -1,0 +1,34 @@
+# Serial code for an axpy
+axpy0:
+	gcc -o bin/axpy0 axpy0.c VectorNDSerial.c
+
+# run multiple timing tests, one after another
+runAxpy0:
+	./bin/axpy0 100
+	./bin/axpy0 400
+	./bin/axpy0 1600
+	./bin/axpy0 6400
+	./bin/axpy0 25600
+	./bin/axpy0 102400
+	./bin/axpy0 409600
+	./bin/axpy0 1638400
+	./bin/axpy0 6553600
+	./bin/axpy0 26214400
+
+# Multithreaded code for an axpy
+axpy2:
+	gcc axpy2.c VectorNDPar.c -fopenmp -o bin/axpy2
+
+# run multiple timing tests, one after another
+runAxpy2:
+	./bin/axpy2 100
+	./bin/axpy2 400
+	./bin/axpy2 1600
+	./bin/axpy2 6400
+	./bin/axpy2 25600
+	./bin/axpy2 102400
+	./bin/axpy2 409600
+	./bin/axpy2 1638400
+	./bin/axpy2 6553600
+	./bin/axpy2 26214400
+
