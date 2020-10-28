@@ -1,0 +1,6 @@
+buildSqr:
+	gcc squaringVals.c -o sqr
+
+runSqr:
+	./sqr 400
+	python plot.py
