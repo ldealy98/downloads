@@ -1,0 +1,11 @@
+buildBroadcast:
+	mpicc -o broadcastInt broadcastInt.c
+
+runBroadcast:
+	mpirun -np 8 ./broadcastInt
+
+buildArrBcast:
+	mpicc -o broadcastArr broadcastArr.c
+
+runArrBcast:
+	mpirun -np 8 ./broadcastArr
