@@ -10,7 +10,7 @@ typedef struct serialVector_tag{
 // initialization functions to set up the space of data and set dimensions
 int initializeSerialVector(serialVector *vecS, int nTotal);
 
-// functions to calculate the L1 norm of a vector (sum of absolute values of  entries)
+// functions to calculate the L1 norm of a vector (sum of absolute values of entries)
 float serialNorm(serialVector *vecS); 
 
 // functions to free the space of data

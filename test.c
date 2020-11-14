@@ -7,29 +7,39 @@
 
 int main(int argc, char** argv){
 	MPI_Init(&argc, &argv);
-	int rank, n_procs;
+	int rank;
 	MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-	MPI_Comm_size(MPI_COMM_WORLD,&n_procs);
 	
-	int nTotal = 5000;
+	int nTotal = 5001;
 	int flagSum = 0;
-	int serialRank = n_procs-1; // this is the rank that'll have the serial vector initially created on it
-	
-	if(rank == serialRank){
+	int serialRank = 0; // this is the rank that'll have the serial vector initially created on it
 
-		// serial vector filled with random values in [0,1] and calculate its L1-norm
-		serialVector vecS; 
+	// all processes have a serial and parallel vector (but only serialRank has space allocated for the serial vector)
+	serialVector vecS;
+	parallelVector vecP;
+
+	// serial test (baseline)	
+	float sNorm;
+	if(rank == serialRank){
+		// serial vector filled with random values in [0,1] and calculate its norm
 		initializeSerialVector(&vecS, nTotal); // allocate space for data
 		int i;
 		for(i=0; i<nTotal; ++i) vecS.dataTotal[i] = (float)rand() / (float)RAND_MAX; // fill with random values
-		float sNorm = serialNorm(&vecS);
+		// zero pad if nTotal not divisible by n_procs
+		if(nTotal < vecS.nTotal){
+			for(i=nTotal; i<vecS.nTotal; ++i) vecS.dataTotal[i] = 0;
+		}
+		// calculate the serial norm
+		sNorm = serialNorm(&vecS);
+	}
 
-		// distribute the serial vector  and calculate same L1-norm in parallel
-		parallelVector vecP;
-		flagSum += initializeParallelVector(&vecP, nTotal); // allocate space for subset of data
-		flagSum += scatterVectorSender(&vecS, &vecP); // fill in all vecP with data subsets
-		float pNorm  = parallelNorm(&vecP); // calculate norm in parallel
+	// distribute the serial vector  and calculate same norm in parallel
+	flagSum += initializeParallelVector(&vecP, nTotal); // allocate space for subset of data
+	flagSum += scatterVector(&vecS, &vecP, serialRank); // fill in all vecP with data subsets
+	float pNorm  = parallelNorm(&vecP, serialRank); // calculate norm in parallel
 
+	// check serial vs parallel results on the serialRank
+	if(rank == serialRank){
 		// check whether the parallel norm is correct
 		if(fabs(sNorm - pNorm) < fabs(sNorm)*1e-6){
 			printf("Serial norm and parallel norm match: %e \n",sNorm); // what you want to  see
@@ -37,26 +47,15 @@ int main(int argc, char** argv){
 		else{
 			printf("WARNING: serial norm was %e but parallel norm was %e \n", sNorm, pNorm); // what you'll see if you've made an error
 		}
-
-		// cleanup phase
-		cleanupSerial(&vecS);
-		cleanupParallel(&vecP);
 	}
-	else{ // all other ranks execute this to do their part in parallel norm calculation
-
-		// setup this portion of distributed vector, geetting data from rank 0
-		parallelVector vecP;
-		flagSum += initializeParallelVector(&vecP, nTotal); // allocate space for local subset of data
-		flagSum += scatterVectorReceiver(serialRank, &vecP); // get data from serial vector
-			
-		// help calculate the norm in parallel
-		float pNorm = parallelNorm (&vecP);
-		
-		printf("Rank %d got parallel norm %e \n", rank, pNorm); // should match parallel L1-norm recorded on all other ranks
-
-		// cleanup phase
-		cleanupParallel(&vecP); 
-	}	
+	else{
+		printf("Rank %d got parallel norm %e \n", rank, pNorm); // should match parallel norm recorded on all other ranks
+	}
+	
+	// only serialRank needs to cleanup serial vector
+	if(rank == serialRank) cleanupSerial(&vecS);
+	// all ranks need to cleanup parallel  vector
+	cleanupParallel(&vecP); 
 
 	MPI_Finalize();
 }

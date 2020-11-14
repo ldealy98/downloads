@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -N1 --ntasks-per-node=10
+#SBATCH -N1 --ntasks-per-node=8
 #SBATCH -t 00:05:00
-#SBATCH -p normal_q
+#SBATCH -p dev_q
 #SBATCH -A cmda3634alloc
 
 #Record the node we ran on
@@ -15,9 +15,9 @@ mpicc -o test test.c serialVector.c parallelVector.c -lm
 
 #Run code with a few different numbers of processors
 echo "$( date ): Start loop"
-for np in 1 2 4 6 8 10; do
+for np in 1 2 4 8; do
 	echo "-----------------------------------"
-	echo "Number of processes: $np "
+	echo "Run test with $np processes"
 	mpirun -np $np ./test
 	echo  "----------------------------------"
 done
