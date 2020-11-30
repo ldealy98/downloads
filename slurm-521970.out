@@ -1,0 +1,29 @@
+Running weak scaling test
+Ran on node: ca037
+Start time: Sun Nov 29 23:38:16 EST 2020
+gcc matVecTiming.c Vector.c Matrix.c -fopenmp -o bin/matVecTiming
+----------- Testing 1000 x 1000 matrix multiplied by 1000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 1 
+Matvec with standard openmp, seconds per run: 2.090545e-03 
+Matvec with guided openmp, seconds per run: 2.052228e-03 
+Matvec with dynamic openmp, seconds per run: 2.014835e-03 
+----------- Testing 1414 x 1414 matrix multiplied by 1414 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 2 
+Matvec with standard openmp, seconds per run: 3.207276e-03 
+Matvec with guided openmp, seconds per run: 2.069262e-03 
+Matvec with dynamic openmp, seconds per run: 2.674330e-03 
+----------- Testing 2000 x 2000 matrix multiplied by 2000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 4 
+Matvec with standard openmp, seconds per run: 4.048061e-03 
+Matvec with guided openmp, seconds per run: 2.379122e-03 
+Matvec with dynamic openmp, seconds per run: 5.773912e-03 
+----------- Testing 2828 x 2828 matrix multiplied by 2828 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 8 
+Matvec with standard openmp, seconds per run: 4.467119e-03 
+Matvec with guided openmp, seconds per run: 2.552573e-03 
+Matvec with dynamic openmp, seconds per run: 1.067145e-02 
+End time: Sun Nov 29 23:38:17 EST 2020

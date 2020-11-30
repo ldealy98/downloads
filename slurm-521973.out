@@ -1,0 +1,29 @@
+Running strong scaling test
+Ran on node: ca037
+Start time: Sun Nov 29 23:48:31 EST 2020
+gcc matVecTiming.c Vector.c Matrix.c -fopenmp -o bin/matVecTiming
+----------- Testing 10000 x 10000 matrix multiplied by 10000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 1 
+Matvec with standard openmp, seconds per run: 2.063883e-01 
+Matvec with guided openmp, seconds per run: 2.062038e-01 
+Matvec with dynamic openmp, seconds per run: 2.033747e-01 
+----------- Testing 10000 x 10000 matrix multiplied by 10000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 2 
+Matvec with standard openmp, seconds per run: 1.547355e-01 
+Matvec with guided openmp, seconds per run: 1.033052e-01 
+Matvec with dynamic openmp, seconds per run: 1.376955e-01 
+----------- Testing 10000 x 10000 matrix multiplied by 10000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 4 
+Matvec with standard openmp, seconds per run: 9.404601e-02 
+Matvec with guided openmp, seconds per run: 5.791900e-02 
+Matvec with dynamic openmp, seconds per run: 1.481242e-01 
+----------- Testing 10000 x 10000 matrix multiplied by 10000 dimensional vector ------- 
+Starting timing tests with 20 repeat runs 
+Number of openmp threads: 8 
+Matvec with standard openmp, seconds per run: 5.311127e-02 
+Matvec with guided openmp, seconds per run: 3.033161e-02 
+Matvec with dynamic openmp, seconds per run: 1.323290e-01 
+End time: Sun Nov 29 23:49:05 EST 2020
