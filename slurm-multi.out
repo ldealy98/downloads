@@ -1,0 +1,45 @@
+CPU took 0.000000e+00 seconds to run 32 entry axpy 
+For small case, y at end is: 
+1.000000 
+1.500000 
+2.000000 
+2.500000 
+3.000000 
+3.500000 
+4.000000 
+4.500000 
+5.000000 
+5.500000 
+6.000000 
+6.500000 
+7.000000 
+7.500000 
+8.000000 
+8.500000 
+9.000000 
+9.500000 
+10.000000 
+10.500000 
+11.000000 
+11.500000 
+12.000000 
+12.500000 
+13.000000 
+13.500000 
+14.000000 
+14.500000 
+15.000000 
+15.500000 
+16.000000 
+16.500000 
+Time to run GPU code: 0.000000e+00 
+CPU took 0.000000e+00 seconds to run 400 entry axpy 
+Time to run GPU code: 1.200000e-03 
+CPU took 0.000000e+00 seconds to run 2000 entry axpy 
+Time to run GPU code: 1.200000e-03 
+CPU took 0.000000e+00 seconds to run 10000 entry axpy 
+Time to run GPU code: 1.100000e-03 
+CPU took 1.000000e-04 seconds to run 50000 entry axpy 
+Time to run GPU code: 1.100000e-03 
+CPU took 5.000000e-04 seconds to run 250000 entry axpy 
+Time to run GPU code: 1.200000e-03 

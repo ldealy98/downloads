@@ -1,0 +1,10 @@
+CPU took 0.000000e+00 seconds to run 400 entry axpy 
+Time to run GPU code: 1.200000e-03 
+CPU took 0.000000e+00 seconds to run 2000 entry axpy 
+Time to run GPU code: 1.100000e-03 
+CPU took 0.000000e+00 seconds to run 10000 entry axpy 
+Time to run GPU code: 1.200000e-03 
+CPU took 1.000000e-04 seconds to run 50000 entry axpy 
+Time to run GPU code: 1.100000e-03 
+CPU took 5.000000e-04 seconds to run 250000 entry axpy 
+Time to run GPU code: 1.200000e-03 
